@@ -67,7 +67,7 @@ namespace ZstdSharp.Unsafe
         the dst buffer. In circumstances where the op "catches up" to where the
         literal buffer is, there can be partial overlaps in this call on the final
         copy if the literal is being shifted by less than 16 bytes. */
-        [InlineMethod.Inline]
+
         private static void ZSTD_copy16(void* dst, void* src)
         {
 #if NET5_0_OR_GREATER

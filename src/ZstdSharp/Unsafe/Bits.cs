@@ -36,7 +36,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint ZSTD_NbCommonBytes(nuint val)
         {
             assert(val != 0);
@@ -49,7 +49,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint ZSTD_highbit32(uint val)
         {
             assert(val != 0);

@@ -239,7 +239,7 @@ namespace ZstdSharp.Unsafe
         /*! BIT_lookBitsFast() :
          *  unsafe version; only works if nbBits >= 1 */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static nuint BIT_lookBitsFast(BIT_DStream_t* bitD, uint nbBits)
         {
             uint regMask = (uint)(sizeof(nuint) * 8 - 1);
@@ -248,7 +248,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void BIT_skipBits(BIT_DStream_t* bitD, uint nbBits)
         {
             bitD->bitsConsumed += nbBits;
@@ -284,7 +284,7 @@ namespace ZstdSharp.Unsafe
          *     point you must use BIT_reloadDStream() to reload.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static BIT_DStream_status BIT_reloadDStreamFast(BIT_DStream_t* bitD)
         {
             if (bitD->ptr < bitD->limitPtr)
@@ -338,7 +338,7 @@ namespace ZstdSharp.Unsafe
          * @return : 1 if DStream has _exactly_ reached its end (all bits consumed).
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint BIT_endOfDStream(BIT_DStream_t* DStream)
         {
             return DStream->ptr == DStream->start && DStream->bitsConsumed == (uint)(sizeof(nuint) * 8) ? 1U : 0U;

@@ -50,12 +50,10 @@ namespace ZstdSharp
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         public static void memcpy(void* destination, void* source, uint size)
             => System.Runtime.CompilerServices.Unsafe.CopyBlockUnaligned(destination, source, size);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         public static void memset(void* memPtr, byte val, uint size)
             => System.Runtime.CompilerServices.Unsafe.InitBlockUnaligned(memPtr, val, size);
 
@@ -86,10 +84,9 @@ namespace ZstdSharp
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void memmove(void* destination, void* source, ulong size)
-            => Buffer.MemoryCopy(source, destination, size, size);
+            => System.Runtime.CompilerServices.Unsafe.CopyBlock(destination, source, Convert.ToUInt32(size));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         public static void Prefetch0(void* p)
         {
 #if NETCOREAPP3_0_OR_GREATER
@@ -101,7 +98,6 @@ namespace ZstdSharp
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         public static void Prefetch1(void* p)
         {
 #if NETCOREAPP3_0_OR_GREATER
@@ -122,7 +118,6 @@ namespace ZstdSharp
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         public static void SkipInit<T>(out T value)
         {
             /* 

@@ -80,38 +80,38 @@ namespace ZstdSharp.Unsafe
             return (nuint)(op - ostart);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint HUF_getNbBits(nuint elt)
         {
             return elt & 0xFF;
         }
 
-        [InlineMethod.Inline]
+
         private static nuint HUF_getNbBitsFast(nuint elt)
         {
             return elt;
         }
 
-        [InlineMethod.Inline]
+
         private static nuint HUF_getValue(nuint elt)
         {
             return elt & ~(nuint)0xFF;
         }
 
-        [InlineMethod.Inline]
+
         private static nuint HUF_getValueFast(nuint elt)
         {
             return elt;
         }
 
-        [InlineMethod.Inline]
+
         private static void HUF_setNbBits(nuint* elt, nuint nbBits)
         {
             assert(nbBits <= 12);
             *elt = nbBits;
         }
 
-        [InlineMethod.Inline]
+
         private static void HUF_setValue(nuint* elt, nuint value)
         {
             nuint nbBits = HUF_getNbBits(*elt);
@@ -371,7 +371,7 @@ namespace ZstdSharp.Unsafe
         /* Return the appropriate bucket index for a given count. See definition of
          * RANK_POSITION_DISTINCT_COUNT_CUTOFF for explanation of bucketing strategy.
          */
-        [InlineMethod.Inline]
+
         private static uint HUF_getIndex(uint count)
         {
             return count < 192 - 1 - 32 - 1 + ZSTD_highbit32(192 - 1 - 32 - 1) ? count : ZSTD_highbit32(count) + (192 - 1 - 32 - 1);
@@ -688,7 +688,7 @@ namespace ZstdSharp.Unsafe
          *              otherwise it must be 0. HUF_addBits() is faster when fast is set.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void HUF_addBits(HUF_CStream_t* bitC, nuint elt, int idx, int kFast)
         {
             assert(idx <= 1);
@@ -700,7 +700,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void HUF_zeroIndex1(HUF_CStream_t* bitC)
         {
             bitC->bitContainer.e1 = 0;
@@ -712,7 +712,7 @@ namespace ZstdSharp.Unsafe
          * and zeros the bit container @ index 1.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void HUF_mergeIndex1(HUF_CStream_t* bitC)
         {
             assert((bitC->bitPos.e1 & 0xFF) < (nuint)(sizeof(nuint) * 8));
@@ -730,7 +730,7 @@ namespace ZstdSharp.Unsafe
          *              the bit container will not overflow.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void HUF_flushBits(HUF_CStream_t* bitC, int kFast)
         {
             /* The upper bits of bitPos are noisy, so we must mask by 0xFF. */
@@ -776,7 +776,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void HUF_encodeSymbol(HUF_CStream_t* bitCPtr, uint symbol, nuint* CTable, int idx, int fast)
         {
             HUF_addBits(bitCPtr, CTable[symbol], idx, fast);

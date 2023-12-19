@@ -194,6 +194,15 @@ namespace ZstdSharp
                 throw new ObjectDisposedException(nameof(DecompressionStream));
         }
 
+        //https://stackoverflow.com/questions/22623364/is-there-a-simple-way-to-return-a-task-with-an-exception
+        private static Task FromExAsync(Exception ex)
+        {
+            var ei = System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex);
+            var task = new Task(() => { ei.Throw(); });
+            task.RunSynchronously();
+            return task;
+        }
+
 #if NETSTANDARD2_0 || NETFRAMEWORK
         public virtual ValueTask DisposeAsync()
         {
@@ -204,7 +213,7 @@ namespace ZstdSharp
             }
             catch (Exception exc)
             {
-                return new ValueTask(Task.FromException(exc));
+                return new ValueTask(FromExAsync(exc));
             }
         }
 #endif

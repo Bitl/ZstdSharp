@@ -733,7 +733,7 @@ namespace ZstdSharp.Unsafe
          * Basically counting the nb of trailing zeroes.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint ZSTD_VecMask_next(ulong val)
         {
             assert(val != 0);
@@ -1044,7 +1044,7 @@ namespace ZstdSharp.Unsafe
          * - Pick the longest match.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_RowFindBestMatch(ZSTD_matchState_t* ms, byte* ip, byte* iLimit, nuint* offsetPtr, uint mls, ZSTD_dictMode_e dictMode, uint rowLog)
         {
             uint* hashTable = ms->hashTable;

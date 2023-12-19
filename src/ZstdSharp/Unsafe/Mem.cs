@@ -20,20 +20,17 @@ namespace ZstdSharp.Unsafe
         /*=== Static platform detection ===*/
         public static bool MEM_32bits
         {
-            [InlineMethod.Inline]
             get => sizeof(nint) == 4;
         }
 
         public static bool MEM_64bits
         {
-            [InlineMethod.Inline]
             get => sizeof(nint) == 8;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         /* default method, safe and standard.
            can sometimes prove slower */
-        [InlineMethod.Inline]
         private static ushort MEM_read16(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -43,7 +40,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static uint MEM_read32(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -53,7 +49,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static ulong MEM_read64(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -63,7 +58,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static nuint MEM_readST(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -73,7 +67,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static void MEM_write16(void* memPtr, ushort value)
         {
             Ldarg(nameof(memPtr));
@@ -83,7 +76,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static void MEM_write64(void* memPtr, ulong value)
         {
             Ldarg(nameof(memPtr));
@@ -94,7 +86,6 @@ namespace ZstdSharp.Unsafe
 
         /*=== Little endian r/w ===*/
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static ushort MEM_readLE16(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -110,7 +101,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void MEM_writeLE16(void* memPtr, ushort val)
         {
             Ldarg(nameof(memPtr));
@@ -127,12 +118,12 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint MEM_readLE24(void* memPtr) =>
             (uint)(MEM_readLE16(memPtr) + (((byte*)memPtr)[2] << 16));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void MEM_writeLE24(void* memPtr, uint val)
         {
             MEM_writeLE16(memPtr, (ushort)val);
@@ -140,7 +131,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint MEM_readLE32(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -156,7 +147,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void MEM_writeLE32(void* memPtr, uint val32)
         {
             Ldarg(nameof(memPtr));
@@ -173,7 +164,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static ulong MEM_readLE64(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -189,7 +180,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void MEM_writeLE64(void* memPtr, ulong val64)
         {
             Ldarg(nameof(memPtr));
@@ -206,7 +197,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static nuint MEM_readLEST(void* memPtr)
         {
             Ldarg(nameof(memPtr));
@@ -225,7 +215,6 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
         private static void MEM_writeLEST(void* memPtr, nuint val)
         {
             Ldarg(nameof(memPtr));

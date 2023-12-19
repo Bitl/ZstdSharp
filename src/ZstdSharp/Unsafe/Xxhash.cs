@@ -17,19 +17,19 @@ namespace ZstdSharp.Unsafe
             free(p);
         }
 
-        [InlineMethod.Inline]
+
         private static void XXH_memcpy(void* dest, void* src, nuint size)
         {
             memcpy(dest, src, (uint)size);
         }
 
-        [InlineMethod.Inline]
+
         private static uint XXH_readLE32(void* ptr)
         {
             return BitConverter.IsLittleEndian ? MEM_read32(ptr) : BinaryPrimitives.ReverseEndianness(MEM_read32(ptr));
         }
 
-        [InlineMethod.Inline]
+
         private static uint XXH_readBE32(void* ptr)
         {
             return BitConverter.IsLittleEndian ? BinaryPrimitives.ReverseEndianness(MEM_read32(ptr)) : MEM_read32(ptr);
@@ -297,13 +297,13 @@ namespace ZstdSharp.Unsafe
             return XXH_readBE32(src);
         }
 
-        [InlineMethod.Inline]
+
         private static ulong XXH_readLE64(void* ptr)
         {
             return BitConverter.IsLittleEndian ? MEM_read64(ptr) : BinaryPrimitives.ReverseEndianness(MEM_read64(ptr));
         }
 
-        [InlineMethod.Inline]
+
         private static ulong XXH_readBE64(void* ptr)
         {
             return BitConverter.IsLittleEndian ? BinaryPrimitives.ReverseEndianness(MEM_read64(ptr)) : MEM_read64(ptr);
@@ -317,7 +317,7 @@ namespace ZstdSharp.Unsafe
                 return BitConverter.IsLittleEndian ? *(ulong*)ptr : BinaryPrimitives.ReverseEndianness(*(ulong*)ptr);
         }
 
-        [InlineMethod.Inline]
+
         private static ulong XXH64_round(ulong acc, ulong input)
         {
             acc += input * 0xC2B2AE3D27D4EB4FUL;
@@ -326,7 +326,7 @@ namespace ZstdSharp.Unsafe
             return acc;
         }
 
-        [InlineMethod.Inline]
+
         private static ulong XXH64_mergeRound(ulong acc, ulong val)
         {
             val = XXH64_round(0, val);

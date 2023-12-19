@@ -140,7 +140,7 @@ namespace ZstdSharp.Unsafe
          *  Allowed to over-read literals up to litLimit.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static void ZSTD_storeSeq(seqStore_t* seqStorePtr, nuint litLength, byte* literals, byte* litLimit, uint offBase, nuint matchLength)
         {
             byte* litLimit_w = litLimit - 32;
@@ -290,7 +290,7 @@ namespace ZstdSharp.Unsafe
         }
 
         private const uint prime3bytes = 506832829U;
-        [InlineMethod.Inline]
+
         private static uint ZSTD_hash3(uint u, uint h, uint s)
         {
             assert(h <= 32);
@@ -298,7 +298,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash3Ptr(void* ptr, uint h)
         {
             return ZSTD_hash3(MEM_readLE32(ptr), h, 0);
@@ -311,100 +311,100 @@ namespace ZstdSharp.Unsafe
         }
 
         private const uint prime4bytes = 2654435761U;
-        [InlineMethod.Inline]
+
         private static uint ZSTD_hash4(uint u, uint h, uint s)
         {
             assert(h <= 32);
             return (u * prime4bytes ^ s) >> (int)(32 - h);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash4Ptr(void* ptr, uint h)
         {
             return ZSTD_hash4(MEM_readLE32(ptr), h, 0);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash4PtrS(void* ptr, uint h, uint s)
         {
             return ZSTD_hash4(MEM_readLE32(ptr), h, s);
         }
 
         private const ulong prime5bytes = 889523592379UL;
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash5(ulong u, uint h, ulong s)
         {
             assert(h <= 64);
             return (nuint)(((u << 64 - 40) * prime5bytes ^ s) >> (int)(64 - h));
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash5Ptr(void* p, uint h)
         {
             return ZSTD_hash5(MEM_readLE64(p), h, 0);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash5PtrS(void* p, uint h, ulong s)
         {
             return ZSTD_hash5(MEM_readLE64(p), h, s);
         }
 
         private const ulong prime6bytes = 227718039650203UL;
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash6(ulong u, uint h, ulong s)
         {
             assert(h <= 64);
             return (nuint)(((u << 64 - 48) * prime6bytes ^ s) >> (int)(64 - h));
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash6Ptr(void* p, uint h)
         {
             return ZSTD_hash6(MEM_readLE64(p), h, 0);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash6PtrS(void* p, uint h, ulong s)
         {
             return ZSTD_hash6(MEM_readLE64(p), h, s);
         }
 
         private const ulong prime7bytes = 58295818150454627UL;
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash7(ulong u, uint h, ulong s)
         {
             assert(h <= 64);
             return (nuint)(((u << 64 - 56) * prime7bytes ^ s) >> (int)(64 - h));
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash7Ptr(void* p, uint h)
         {
             return ZSTD_hash7(MEM_readLE64(p), h, 0);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash7PtrS(void* p, uint h, ulong s)
         {
             return ZSTD_hash7(MEM_readLE64(p), h, s);
         }
 
         private const ulong prime8bytes = 0xCF1BBCDCB7A56463UL;
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash8(ulong u, uint h, ulong s)
         {
             assert(h <= 64);
             return (nuint)((u * prime8bytes ^ s) >> (int)(64 - h));
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash8Ptr(void* p, uint h)
         {
             return ZSTD_hash8(MEM_readLE64(p), h, 0);
         }
 
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_hash8PtrS(void* p, uint h, ulong s)
         {
             return ZSTD_hash8(MEM_readLE64(p), h, s);

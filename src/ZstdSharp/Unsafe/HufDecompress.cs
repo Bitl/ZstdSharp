@@ -96,7 +96,7 @@ namespace ZstdSharp.Unsafe
          * Packs 4 HUF_DEltX1 structs into a U64. This is used to lay down 4 entries at
          * a time.
          */
-        [InlineMethod.Inline]
+
         private static ulong HUF_DEltX1_set4(byte symbol, byte nbBits)
         {
             ulong D4;
@@ -284,7 +284,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static byte HUF_decodeSymbolX1(BIT_DStream_t* Dstream, HUF_DEltX1* dt, uint dtLog)
         {
             /* note : dtLog >= 1 */
@@ -875,7 +875,7 @@ namespace ZstdSharp.Unsafe
         /**
          * Constructs a HUF_DEltX2 in a U32.
          */
-        [InlineMethod.Inline]
+
         private static uint HUF_buildDEltX2U32(uint symbol, uint nbBits, uint baseSeq, int level)
         {
             uint seq;
@@ -894,7 +894,7 @@ namespace ZstdSharp.Unsafe
         /**
          * Constructs a HUF_DEltX2.
          */
-        [InlineMethod.Inline]
+
         private static HUF_DEltX2 HUF_buildDEltX2(uint symbol, uint nbBits, uint baseSeq, int level)
         {
             HUF_DEltX2 DElt;
@@ -906,7 +906,7 @@ namespace ZstdSharp.Unsafe
         /**
          * Constructs 2 HUF_DEltX2s and packs them into a U64.
          */
-        [InlineMethod.Inline]
+
         private static ulong HUF_buildDEltX2U64(uint symbol, uint nbBits, ushort baseSeq, int level)
         {
             uint DElt = HUF_buildDEltX2U32(symbol, nbBits, baseSeq, level);
@@ -925,7 +925,7 @@ namespace ZstdSharp.Unsafe
          * @param baseSeq If level == 1 { 0 } else { the first level symbol }
          * @param level The level in the table. Must be 1 or 2.
          */
-        [InlineMethod.Inline]
+
         private static void HUF_fillDTableX2ForWeight(HUF_DEltX2* DTableRank, sortedSymbol_t* begin, sortedSymbol_t* end, uint nbBits, uint tableLog, ushort baseSeq, int level)
         {
             /* quiet static-analyzer */
@@ -994,7 +994,7 @@ namespace ZstdSharp.Unsafe
 
         /* HUF_fillDTableX2Level2() :
          * `rankValOrigin` must be a table of at least (HUF_TABLELOG_MAX + 1) U32 */
-        [InlineMethod.Inline]
+
         private static void HUF_fillDTableX2Level2(HUF_DEltX2* DTable, uint targetLog, uint consumedBits, uint* rankVal, int minWeight, int maxWeight1, sortedSymbol_t* sortedSymbols, uint* rankStart, uint nbBitsBaseline, ushort baseSeq)
         {
             if (minWeight > 1)
@@ -1174,7 +1174,7 @@ namespace ZstdSharp.Unsafe
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static uint HUF_decodeSymbolX2(void* op, BIT_DStream_t* DStream, HUF_DEltX2* dt, uint dtLog)
         {
             /* note : dtLog >= 1 */

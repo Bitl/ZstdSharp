@@ -131,7 +131,7 @@ namespace ZstdSharp.Unsafe
          * This is also the work we do at the beginning to enter the loop initially.
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [InlineMethod.Inline]
+
         private static nuint ZSTD_compressBlock_fast_noDict_generic(ZSTD_matchState_t* ms, seqStore_t* seqStore, uint* rep, void* src, nuint srcSize, uint mls, uint hasStep)
         {
             ZSTD_compressionParameters* cParams = &ms->cParams;
